@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   plugins: [react()],
+  base: './', // Use relative paths for GitHub Pages
   resolve: {
     alias: {
       // Three.js r143 doesn't export the `three/addons` subpath in its package
