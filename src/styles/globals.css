@@ -18,6 +18,12 @@
     --border-strong: rgba(210,145,118,0.35);
   }
 
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   body {
     background-color: var(--bg);
     color: var(--text);
@@ -28,10 +34,20 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
   }
 
-  html {
-    scroll-behavior: smooth;
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Prevent any element from causing horizontal scroll */
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   /* Spotlight card */

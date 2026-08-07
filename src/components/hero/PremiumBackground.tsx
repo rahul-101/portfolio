@@ -183,5 +183,5 @@ export default function PremiumBackground() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 z-0 h-full w-full opacity-80" aria-hidden="true" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 z-0 h-full w-full max-w-full opacity-80" style={{ maxWidth: '100vw', maxHeight: '100vh' }} aria-hidden="true" />;
 }
