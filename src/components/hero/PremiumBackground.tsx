@@ -8,7 +8,11 @@ export default function PremiumBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      console.error('Failed to get 2D context from canvas');
+      return;
+    }
     let raf = 0;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const coarse = window.matchMedia('(pointer: coarse)').matches;
@@ -80,85 +84,89 @@ export default function PremiumBackground() {
     }
 
     function draw(t: number) {
-      ctx.clearRect(0, 0, w, h);
-      const focus = Math.min(w, h) * 0.55;
+      try {
+        ctx.clearRect(0, 0, w, h);
+        const focus = Math.min(w, h) * 0.55;
 
-      // Icosahedron — center
-      const icoSize = Math.min(w, h) * 0.28;
-      const iY = t * 0.00016, iP = 0.3 + Math.sin(t * 0.0001) * 0.2;
-      const iCY = Math.cos(iY), iSY = Math.sin(iY), iCX = Math.cos(iP), iSX = Math.sin(iP);
-      ctx.strokeStyle = `rgba(${accent.r},${accent.g},${accent.b},0.5)`;
-      ctx.fillStyle = `rgba(${accent.r},${accent.g},${accent.b},0.8)`;
-      ctx.lineWidth = 1;
-      for (const [a, b] of icoEdges) {
-        const A = rot(icoRaw[a] as [number,number,number], iCY, iSY, iCX, iSX);
-        const B = rot(icoRaw[b] as [number,number,number], iCY, iSY, iCX, iSX);
-        const sA = focus / (focus + 2 + A[2] * icoSize);
-        const sB = focus / (focus + 2 + B[2] * icoSize);
-        ctx.globalAlpha = Math.min(1, Math.max(0.04, (sA + sB) / 2 - 0.5)) * 0.4;
-        ctx.beginPath();
-        ctx.moveTo(w/2 + A[0] * icoSize * sA, h/2.1 + A[1] * icoSize * sA);
-        ctx.lineTo(w/2 + B[0] * icoSize * sB, h/2.1 + B[1] * icoSize * sB);
-        ctx.stroke();
-      }
-      for (const v of icoRaw) {
-        const r = rot(v as [number,number,number], iCY, iSY, iCX, iSX);
-        const s = focus / (focus + 2 + r[2] * icoSize);
-        ctx.globalAlpha = Math.min(1, Math.max(0.1, s - 0.5)) * 0.6;
-        ctx.beginPath(); ctx.arc(w/2 + r[0] * icoSize * s, h/2.1 + r[1] * icoSize * s, 1.6, 0, Math.PI * 2); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-
-      // Octahedron (offset)
-      const oSize = Math.min(w, h) * 0.12;
-      const oY = -t * 0.00012, oP = -0.5 + Math.sin(t * 0.00008) * 0.3;
-      const oCY = Math.cos(oY), oSY = Math.sin(oY), oCX = Math.cos(oP), oSX = Math.sin(oP);
-      ctx.strokeStyle = `rgba(${alt.r},${alt.g},${alt.b},0.4)`;
-      const ox = w * 0.82, oy = h * 0.18;
-      for (const [a, b] of octEdges) {
-        const ra = rot(octRaw[a] as [number,number,number], oCY, oSY, oCX, oSX);
-        const rb = rot(octRaw[b] as [number,number,number], oCY, oSY, oCX, oSX);
-        const sA = focus / (focus + 2 + ra[2] * oSize);
-        const sB = focus / (focus + 2 + rb[2] * oSize);
-        ctx.globalAlpha = Math.min(1, Math.max(0.04, (sA + sB) / 2 - 0.5)) * 0.4;
-        ctx.beginPath();
-        ctx.moveTo(ox + ra[0] * oSize * sA, oy + ra[1] * oSize * sA);
-        ctx.lineTo(ox + rb[0] * oSize * sB, oy + rb[1] * oSize * sB);
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-
-      // Particles
-      const yaw = Math.sin(t * 0.00008) * 0.4;
-      const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
-      const fovF = focus * 2.4;
-      const pts = nodes.map((n) => {
-        n.x += n.vx; n.y += n.vy; n.z += n.vz; n.pulse += 0.01;
-        if (n.x > 1.1 || n.x < -1.1) n.vx *= -1;
-        if (n.y > 1.1 || n.y < -1.1) n.vy *= -1;
-        if (n.z > DEPTH/2 || n.z < -DEPTH/2) n.vz *= -1;
-        const x = n.x * cosY + n.z * sinY;
-        const z = -n.x * sinY + n.z * cosY;
-        const scale = fovF / (fovF + z);
-        return { x: w/2 + x * focus * scale, y: h/2 + n.y * focus * scale, z, scale, pulse: n.pulse };
-      });
-      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, dz = (pts[i].z - pts[j].z) * 0.5;
-        const d2 = dx * dx + dy * dy + dz * dz;
-        if (d2 < LINK2) {
-          ctx.globalAlpha = (1 - d2 / LINK2) * 0.16;
-          ctx.strokeStyle = `rgba(${accent.r},${accent.g},${accent.b},1)`;
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+        // Icosahedron — center
+        const icoSize = Math.min(w, h) * 0.28;
+        const iY = t * 0.00016, iP = 0.3 + Math.sin(t * 0.0001) * 0.2;
+        const iCY = Math.cos(iY), iSY = Math.sin(iY), iCX = Math.cos(iP), iSX = Math.sin(iP);
+        ctx.strokeStyle = `rgba(${accent.r},${accent.g},${accent.b},0.5)`;
+        ctx.fillStyle = `rgba(${accent.r},${accent.g},${accent.b},0.8)`;
+        ctx.lineWidth = 1;
+        for (const [a, b] of icoEdges) {
+          const A = rot(icoRaw[a] as [number,number,number], iCY, iSY, iCX, iSX);
+          const B = rot(icoRaw[b] as [number,number,number], iCY, iSY, iCX, iSX);
+          const sA = focus / (focus + 2 + A[2] * icoSize);
+          const sB = focus / (focus + 2 + B[2] * icoSize);
+          ctx.globalAlpha = Math.min(1, Math.max(0.04, (sA + sB) / 2 - 0.5)) * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(w/2 + A[0] * icoSize * sA, h/2.1 + A[1] * icoSize * sA);
+          ctx.lineTo(w/2 + B[0] * icoSize * sB, h/2.1 + B[1] * icoSize * sB);
+          ctx.stroke();
         }
+        for (const v of icoRaw) {
+          const r = rot(v as [number,number,number], iCY, iSY, iCX, iSX);
+          const s = focus / (focus + 2 + r[2] * icoSize);
+          ctx.globalAlpha = Math.min(1, Math.max(0.1, s - 0.5)) * 0.6;
+          ctx.beginPath(); ctx.arc(w/2 + r[0] * icoSize * s, h/2.1 + r[1] * icoSize * s, 1.6, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        // Octahedron (offset)
+        const oSize = Math.min(w, h) * 0.12;
+        const oY = -t * 0.00012, oP = -0.5 + Math.sin(t * 0.00008) * 0.3;
+        const oCY = Math.cos(oY), oSY = Math.sin(oY), oCX = Math.cos(oP), oSX = Math.sin(oP);
+        ctx.strokeStyle = `rgba(${alt.r},${alt.g},${alt.b},0.4)`;
+        const ox = w * 0.82, oy = h * 0.18;
+        for (const [a, b] of octEdges) {
+          const ra = rot(octRaw[a] as [number,number,number], oCY, oSY, oCX, oSX);
+          const rb = rot(octRaw[b] as [number,number,number], oCY, oSY, oCX, oSX);
+          const sA = focus / (focus + 2 + ra[2] * oSize);
+          const sB = focus / (focus + 2 + rb[2] * oSize);
+          ctx.globalAlpha = Math.min(1, Math.max(0.04, (sA + sB) / 2 - 0.5)) * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(ox + ra[0] * oSize * sA, oy + ra[1] * oSize * sA);
+          ctx.lineTo(ox + rb[0] * oSize * sB, oy + rb[1] * oSize * sB);
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+
+        // Particles
+        const yaw = Math.sin(t * 0.00008) * 0.4;
+        const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
+        const fovF = focus * 2.4;
+        const pts = nodes.map((n) => {
+          n.x += n.vx; n.y += n.vy; n.z += n.vz; n.pulse += 0.01;
+          if (n.x > 1.1 || n.x < -1.1) n.vx *= -1;
+          if (n.y > 1.1 || n.y < -1.1) n.vy *= -1;
+          if (n.z > DEPTH/2 || n.z < -DEPTH/2) n.vz *= -1;
+          const x = n.x * cosY + n.z * sinY;
+          const z = -n.x * sinY + n.z * cosY;
+          const scale = fovF / (fovF + z);
+          return { x: w/2 + x * focus * scale, y: h/2 + n.y * focus * scale, z, scale, pulse: n.pulse };
+        });
+        for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, dz = (pts[i].z - pts[j].z) * 0.5;
+          const d2 = dx * dx + dy * dy + dz * dz;
+          if (d2 < LINK2) {
+            ctx.globalAlpha = (1 - d2 / LINK2) * 0.16;
+            ctx.strokeStyle = `rgba(${accent.r},${accent.g},${accent.b},1)`;
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+          }
+        }
+        ctx.fillStyle = `rgba(${alt.r},${alt.g},${alt.b},0.9)`;
+        for (const p of pts) {
+          const size = Math.max(0.4, (0.6 + p.scale * 1.4) * (0.7 + 0.4 * Math.sin(p.pulse)));
+          ctx.globalAlpha = Math.min(1, p.scale) * 0.5;
+          ctx.beginPath(); ctx.arc(p.x, p.y, size, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      } catch (e) {
+        console.error('Error in PremiumBackground draw loop:', e);
       }
-      ctx.fillStyle = `rgba(${alt.r},${alt.g},${alt.b},0.9)`;
-      for (const p of pts) {
-        const size = Math.max(0.4, (0.6 + p.scale * 1.4) * (0.7 + 0.4 * Math.sin(p.pulse)));
-        ctx.globalAlpha = Math.min(1, p.scale) * 0.5;
-        ctx.beginPath(); ctx.arc(p.x, p.y, size, 0, Math.PI * 2); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
     }
 
     function loop(t: number) {
