@@ -8,11 +8,12 @@ export default function PremiumBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
+    const rawCtx = canvas.getContext('2d');
+    if (!rawCtx) {
       console.error('Failed to get 2D context from canvas');
       return;
     }
+    const ctx: CanvasRenderingContext2D = rawCtx;
     let raf = 0;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const coarse = window.matchMedia('(pointer: coarse)').matches;
