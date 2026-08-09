@@ -38,9 +38,9 @@ export const about = {
   label: '01 — About',
   title: 'Engineering Intelligence Into Operations.',
   paragraphs: [
-    "I'm Rahul — a Senior Specialist with <strong>6+ years</strong> across consumer goods, financial services, telecom and agriculture. I started in data and business intelligence, writing SQL and ETL pipelines; today I design <strong>agentic AI systems</strong> that plan, reason, and execute autonomously.",
-    'My work sits where three things meet: <strong>intelligent agents</strong> (CrewAI, LangGraph, Claude), <strong>resilient automation</strong> (Python, Ansible, API-led integrations), and <strong>data platforms</strong> (SQL Server, Power BI) that make the output visible and measurable.',
-    'The common thread is delivery with evidence — every workflow I build comes with observability, traceability, and a number attached to it.',
+    "I'm Rahul Biswas, a Senior Specialist with over 6 years of experience designing and deploying intelligent systems across the enterprise stack. My journey began in data engineering and business intelligence—building ETL pipelines, optimizing SQL queries, and crafting Power BI dashboards—and has evolved into architecting agentic AI workflows that autonomously plan, reason, and act to deliver measurable business outcomes.",
+    'Today I operate at the intersection of three technical domains: <strong>Agentic AI</strong> (orchestrating multi-agent systems with CrewAI, LangGraph, and Claude for adaptive decision-making), <strong>Resilient Automation</strong> (developing Python-based automation frameworks, REST APIs, and infrastructure-as-code with Ansible and Terraform), and <strong>Data Platforms</strong> (designing SQL Server and Power BI solutions that transform raw telemetry into actionable insights with full traceability).',
+    'The common thread is delivery with evidence — every workflow I build comes with observability, traceability, and a number attached to it. This ensures that automation and AI initiatives are not just technically sound but also demonstrably impactful, enabling stakeholders to make informed decisions based on measurable outcomes.',
   ],
   stats: [
     { value: 6, suffix: '+', label: 'Years of Experience' },
@@ -353,10 +353,11 @@ export const timeline: TimelineEntry[] = [
     date: 'Oct 2025 — Present',
     tag: 'Agentic AI, Automation & Data',
     points: [
-      'Leading Agentic AI development for enterprise automation, multi-step orchestration and autonomous execution.',
-      'Designing multi-agent workflows with CrewAI, LangGraph, custom LLM components and AEX tools.',
-      'Building reusable Python-based agent frameworks with API, data and prompt-driven integration.',
-      'Establishing standards for evaluation, observability, modular design and maintainability.',
+      'Leading Agentic AI development for enterprise automation — architecting multi-step orchestration and autonomous execution that replaces manual, human-in-the-loop workflows.',
+      'Designing multi-agent workflows with CrewAI, LangGraph, custom LLM components and AEX tools, enabling complex tasks to be decomposed and executed reliably.',
+      'Building reusable, Python-based agent frameworks with API, data and prompt-driven integration that standardize how agents connect to enterprise systems.',
+      'Establishing engineering standards for LLM evaluation, observability, modular design and maintainability so agentic solutions scale beyond prototypes.',
+      'Driving measurable ROI: automating tasks that previously required dedicated manual effort, cutting turn-around time and improving process consistency.',
     ],
   },
   {
@@ -366,10 +367,11 @@ export const timeline: TimelineEntry[] = [
     date: 'Sep 2023 — Sep 2025',
     tag: 'Global Consumer Goods',
     points: [
-      'Led automation and optimization for large-scale global WAN, switch and router environments.',
-      'Designed a capacity-utilization monitoring solution for 24,000+ network devices.',
-      'Engineered Python automation for SFTP ingestion, transformation and SQL Server loads.',
-      '<strong>Delivered 80% reduction in manual effort and 80% improvement in MTTR.</strong>',
+      'Led automation and optimization for large-scale global WAN, switch and router environments spanning 24,000+ network devices.',
+      'Designed a capacity-utilization monitoring platform with SFTP ingestion, unstructured-data transformation and curated SQL Server loads.',
+      'Engineered Python automation pipelines that eliminated repetitive manual checks and reduced human error in network operations.',
+      'Built executive-facing Power BI dashboards that made capacity trends, utilization and anomalies visible at a glance.',
+      '<strong>Delivered 80% reduction in manual effort and 80% improvement in MTTR</strong> — turning network data into proactive, data-driven decisions.',
     ],
   },
   {
@@ -379,10 +381,10 @@ export const timeline: TimelineEntry[] = [
     date: 'Sep 2021 — Sep 2023',
     tag: 'Financial Services',
     points: [
-      'Developed asynchronous Python automation for speed, scalability and reliability.',
-      'Created REST APIs with Flask to connect automation components and systems.',
-      'Automated VM commissioning and decommissioning, improving provisioning consistency.',
-      'Applied unit testing, Git and Jira-based agile practices.',
+      'Developed asynchronous Python automation for speed, scalability and reliability, enabling parallel execution of long-running provisioning tasks.',
+      'Created REST APIs with Flask to connect automation components and external systems, standardizing how workflows are triggered and monitored.',
+      'Automated VM commissioning and decommissioning, node configuration, protection jobs and image restoration — improving provisioning consistency to 100%.',
+      'Applied unit testing, Git version control and Jira-based agile practices to keep automation reliable and auditable.',
     ],
   },
   {
@@ -392,10 +394,11 @@ export const timeline: TimelineEntry[] = [
     date: 'Jan 2021 — Sep 2021',
     tag: 'Financial Services',
     points: [
-      'Led KYC remediation automation for banks in Germany and the UK (Python, PowerShell, VBA).',
-      'Built a Python fuzzy-reconciliation solution for production remediation accuracy.',
-      'Designed SSIS packages, ETL procedures and SQL Server scheduling routines.',
-      'Performed UBO investigations, data-quality checks and reconciliation.',
+      'Led KYC remediation automation for banks across Germany and the UK using Python, PowerShell and VBA to streamline client onboarding.',
+      'Built a Python fuzzy-reconciliation solution that matched entity records accurately, significantly reducing false positives in production remediation.',
+      'Designed SSIS packages, ETL procedures and SQL Server scheduling routines for reliable, scheduled data processing.',
+      'Performed UBO investigations, data-quality checks and reconciliation, ensuring regulatory and audit readiness.',
+      'Delivered live progress dashboards in Power BI that kept stakeholders informed and audit-ready in real time.',
     ],
   },
   {
@@ -405,9 +408,10 @@ export const timeline: TimelineEntry[] = [
     date: 'Jun 2019 — Dec 2020',
     tag: 'Telecom & Agriculture',
     points: [
-      'Developed complex SQL scripts for telecom data-migration with field-level validations.',
-      'Built a price-prediction model with logistic regression and K-means clustering.',
-      'Transformed food-and-beverage datasets into Power BI dashboards.',
+      'Developed complex SQL scripts for telecom data-migration with field-level validations, ensuring clean, accurate handovers between systems.',
+      'Built a price-prediction model using logistic regression and K-means clustering to forecast trends and support pricing decisions.',
+      'Transformed food-and-beverage datasets into Power BI dashboards, surfacing insight from raw, unstructured data.',
+      'Collaborated with clients to translate business requirements into technical deliverables, improving data-driven decision-making across teams.',
     ],
   },
 ];

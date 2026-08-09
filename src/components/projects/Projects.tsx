@@ -99,15 +99,16 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-export default function Projects() {
+export default function Projects({ delay = 0 }: { delay?: number }) {
   return (
     <>
-      <Section id="projects" label="04 — Personal Projects" title="Building in Public.">
+      <Section id="projects" label="04 — Personal Projects" title="Building in Public." delay={delay}>
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, margin: '-60px' }}
+          transition={{ delayChildren: delay }}
           className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2"
         >
           {personalProjects.map((project) => (
@@ -118,12 +119,13 @@ export default function Projects() {
         </motion.div>
       </Section>
 
-      <Section id="professional" label="05 — Professional Projects" title="Delivering At Enterprise Scale.">
+      <Section id="professional" label="05 — Professional Projects" title="Delivering At Enterprise Scale." delay={delay + 0.15}>
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, margin: '-60px' }}
+          transition={{ delayChildren: delay + 0.15 }}
           className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3"
         >
           {professionalProjects.map((project) => (

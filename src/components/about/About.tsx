@@ -5,12 +5,12 @@ import Stats from './Stats';
 import Industries from './Industries';
 import Testimonials from './Testimonials';
 
-export default function About() {
+export default function About({ delay = 0 }: { delay?: number }) {
   return (
     <Section id="about" label={about.label} title={about.title}>
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
         <div className="flex-1">
-          <ScrollReveal>
+          <ScrollReveal delay={delay}>
             <div className="space-y-5 text-brand-muted leading-relaxed">
               {about.paragraphs.map((p, i) => (
                 <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
@@ -18,18 +18,18 @@ export default function About() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.08}>
+          <ScrollReveal delay={delay + 0.15}>
             <div className="mt-14 pt-8 border-t border-brand-border">
               <Stats />
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.12}>
+          <ScrollReveal delay={delay + 0.3}>
             <Industries />
           </ScrollReveal>
 
           {/* Three pillars */}
-          <ScrollReveal delay={0.16}>
+          <ScrollReveal delay={delay + 0.45}>
             <div className="mt-12 grid gap-4 sm:grid-cols-3">
               {about.pillars.map((p) => (
                 <div key={p.title} className="glass-card glass-shine rounded-card p-5">

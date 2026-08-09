@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import { timeline } from '../../lib/data';
 import Section from '../ui/Section';
 
-export default function Experience() {
+export default function Experience({ delay = 0 }: { delay?: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -12,7 +12,7 @@ export default function Experience() {
   const scaleY = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
 
   return (
-    <Section id="experience" label="06 — Experience" title="A Track Record of Impact.">
+    <Section id="experience" label="06 — Experience" title="A Track Record of Impact." delay={delay}>
       <div ref={containerRef} className="relative mx-auto max-w-3xl">
         {/* Base timeline rail */}
         <div className="absolute left-[15px] top-0 h-full w-px bg-brand-border" aria-hidden="true" />
@@ -64,9 +64,9 @@ export default function Experience() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.15 + j * 0.08, duration: 0.5 }}
-                        className="relative pl-5"
+                        className="relative pl-6"
                       >
-                        <span className="absolute left-0 top-[0.55em] h-1 w-1 rounded-full bg-brand-amber/70" aria-hidden="true" />
+                        <span className="absolute left-0 top-[0.5em] font-semibold leading-none text-brand-amber" aria-hidden="true">→</span>
                         <span dangerouslySetInnerHTML={{ __html: p }} />
                       </motion.li>
                     ))}

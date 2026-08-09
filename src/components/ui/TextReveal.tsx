@@ -5,9 +5,10 @@ interface Props {
   className?: string;
   as?: 'h1' | 'h2' | 'h3';
   stagger?: number;
-  }
+  delay?: number;
+}
 
-export default function TextReveal({ text, className = '', as = 'h2', stagger = 0.07 }: Props) {
+export default function TextReveal({ text, className = '', as = 'h2', stagger = 0.07, delay = 0 }: Props) {
   const words = text.split(' ');
   const Tag = motion[as];
 
@@ -17,7 +18,7 @@ export default function TextReveal({ text, className = '', as = 'h2', stagger = 
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, amount: 0.5 }}
-      transition={{ staggerChildren: stagger }}
+      transition={{ staggerChildren: stagger, delayChildren: delay }}
       aria-label={text}
     >
       {words.map((word, i) => (

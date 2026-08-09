@@ -4,7 +4,7 @@ import Section from '../ui/Section';
 import ScrollReveal from '../ui/ScrollReveal';
 import { motion } from 'framer-motion';
 
-export default function Contact() {
+export default function Contact({ delay = 0 }: { delay?: number }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -46,14 +46,14 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" label={contact.label} title={contact.title}>
-      <ScrollReveal>
+    <Section id="contact" label={contact.label} title={contact.title} delay={delay}>
+      <ScrollReveal delay={delay}>
         <p className="mb-10 text-center text-brand-muted">{contact.sub}</p>
       </ScrollReveal>
 
       <div className="grid gap-8 lg:grid-cols-5">
         {/* Form */}
-        <ScrollReveal className="lg:col-span-3">
+        <ScrollReveal delay={delay + 0.1} className="lg:col-span-3">
           <form onSubmit={handleSubmit} className="glass-card glass-shine rounded-card p-6">
             <h3 className="mb-4 font-display font-semibold text-brand-text">Send a Message</h3>
             <div className="space-y-4">
@@ -90,13 +90,11 @@ export default function Contact() {
         </ScrollReveal>
 
         {/* Contact links */}
-        <ScrollReveal delay={0.08} className="lg:col-span-2">
+        <ScrollReveal delay={delay + 0.2} className="lg:col-span-2">
           <div className="flex h-full flex-col gap-4">
             {[
               { icon: '✉', label: 'Email', href: `mailto:${contact.email}`, value: contact.email },
               { icon: '📞', label: 'Phone', href: `tel:${contact.phoneHref}`, value: contact.phone },
-              { icon: 'in', label: 'LinkedIn', href: contact.linkedin, value: contact.linkedinLabel },
-              { icon: '⌘', label: 'GitHub', href: contact.github, value: contact.githubLabel },
             ].map((c) => (
               <a
                 key={c.label}
@@ -112,9 +110,23 @@ export default function Contact() {
                 </div>
               </a>
             ))}
-            <p className="mt-2 text-center font-mono text-xs text-brand-muted">
-              📍 {contact.location}
-            </p>
+            <motion.div
+              className="glass-card flex items-center justify-center gap-3 rounded-card p-4"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+            >
+              <motion.span
+                className="text-xl"
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                aria-hidden="true"
+              >
+                📍
+              </motion.span>
+              <span className="font-mono text-sm text-brand-muted">{contact.location}</span>
+            </motion.div>
           </div>
         </ScrollReveal>
       </div>

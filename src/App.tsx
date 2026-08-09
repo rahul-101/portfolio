@@ -37,13 +37,13 @@ export default function App() {
 
       <main id="main" className="relative z-10">
         <Hero />
-        <About />
-        <Skills />
-        <Credentials />
-        <Projects />
-        <Experience />
-        <Writing />
-        <Contact />
+        <About delay={0} />
+        <Skills delay={0.2} />
+        <Credentials delay={0.4} />
+        <Projects delay={0.6} />
+        <Experience delay={0.8} />
+        <Writing delay={1.0} />
+        <Contact delay={1.2} />
       </main>
 
       <Footer />

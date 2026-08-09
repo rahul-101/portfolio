@@ -48,11 +48,11 @@ const cardVariant = {
   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-export default function Skills() {
+export default function Skills({ delay = 0 }: { delay?: number }) {
   return (
-    <Section id="skills" label="02 — Skills" title="The Toolkit Behind the Results.">
+    <Section id="skills" label="02 — Skills" title="The Toolkit Behind the Results." delay={delay}>
       <motion.div
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09 } } }}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: delay } } }}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, margin: '-40px' }}

@@ -51,8 +51,8 @@ export default function Hero() {
             aria-hidden="true"
             initial={false}
           />
-          <div className="relative h-[300px] w-[300px] overflow-hidden rounded-[2.5rem] border border-brand-border/40 shadow-2xl shadow-brand-amber/20 sm:h-[340px] sm:w-[300px]">
-            <img src="./images/profile.jpg" alt="Rahul Biswas" className="h-full w-full object-cover" />
+          <div className="relative h-[300px] w-[225px] overflow-hidden rounded-[2.5rem] border border-brand-border/40 shadow-2xl shadow-brand-amber/20 sm:h-[340px] sm:w-[255px]">
+            <img src="./images/profile.jpg" alt="Rahul Biswas" className="h-full w-full object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/30 via-transparent to-transparent" aria-hidden="true" />
           </div>
         </motion.div>

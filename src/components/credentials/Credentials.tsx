@@ -107,9 +107,9 @@ function CertCarousel() {
   );
 }
 
-export default function Credentials() {
+export default function Credentials({ delay = 0 }: { delay?: number }) {
   return (
-    <Section id="credentials" label="03 — Credentials" title="Certified, Educated, Recognised.">
+    <Section id="credentials" label="03 — Credentials" title="Certified, Educated, Recognised." delay={delay}>
       <ScrollReveal>
         <h3 className="mb-6 text-center font-display text-xl font-semibold text-brand-text">
           Certifications <span className="font-mono text-sm text-brand-amber">{certifications.length}</span>
