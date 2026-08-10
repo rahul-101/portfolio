@@ -24,7 +24,7 @@ export default function Hero() {
   const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
-    <section id="hero" className="relative flex min-h-svh flex-col items-center overflow-hidden px-5 pb-8 pt-14 text-center md:px-16 md:py-28">
+    <section id="hero" className="relative flex flex-col items-center overflow-hidden px-5 pb-6 pt-14 text-center md:px-16 md:py-28">
 
       <motion.div
         variants={stagger}
@@ -34,7 +34,7 @@ export default function Hero() {
         className="relative z-10 flex max-w-[900px] flex-col items-center my-auto"
       >
         {/* Profile avatar — large focal point */}
-        <motion.div variants={itemUp} className="relative mb-4 sm:mb-10">
+        <motion.div variants={itemUp} className="relative mb-3 sm:mb-10">
           <motion.div
             className="absolute -inset-8 rounded-[3.5rem] bg-gradient-to-tr from-brand-amber/40 via-brand-rose/25 to-brand-amber/40 blur-3xl opacity-80"
             animate={{ opacity: [0.6, 0.85, 0.6] }}
@@ -79,7 +79,7 @@ export default function Hero() {
         </motion.p>
 
         {/* CTAs */}
-        <motion.div variants={item} className="mt-4 flex flex-wrap items-center justify-center gap-4 sm:mt-10 sm:gap-5">
+        <motion.div variants={item} className="mt-3 flex flex-wrap items-center justify-center gap-4 sm:mt-10 sm:gap-5">
           <motion.a
             href="#projects"
             whileHover={{ scale: 1.06, y: -2 }}
@@ -100,7 +100,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Meta chips */}
-        <motion.div variants={item} className="mt-4 flex flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-3">
+        <motion.div variants={item} className="mt-3 flex flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-3">
           {hero.metaChips.map((chip) => (
             <span key={chip} className="glass-card rounded-full px-4 py-1.5 font-mono text-xs text-brand-muted sm:px-5 sm:py-2 sm:text-sm">
               {chip}
