@@ -24,17 +24,17 @@ export default function Hero() {
   const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
-    <section id="hero" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 py-28 text-center md:px-16">
+    <section id="hero" className="relative flex min-h-svh flex-col items-center overflow-hidden px-5 pb-8 pt-14 text-center md:px-16 md:py-28">
 
       <motion.div
         variants={stagger}
         initial="hidden"
         animate="show"
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 flex max-w-[900px] flex-col items-center"
+        className="relative z-10 flex max-w-[900px] flex-col items-center my-auto"
       >
         {/* Profile avatar — large focal point */}
-        <motion.div variants={itemUp} className="relative mb-10">
+        <motion.div variants={itemUp} className="relative mb-4 sm:mb-10">
           <motion.div
             className="absolute -inset-8 rounded-[3.5rem] bg-gradient-to-tr from-brand-amber/40 via-brand-rose/25 to-brand-amber/40 blur-3xl opacity-80"
             animate={{ opacity: [0.6, 0.85, 0.6] }}
@@ -51,14 +51,14 @@ export default function Hero() {
             aria-hidden="true"
             initial={false}
           />
-          <div className="relative h-[300px] w-[225px] overflow-hidden rounded-[2.5rem] border border-brand-border/40 shadow-2xl shadow-brand-amber/20 sm:h-[340px] sm:w-[255px]">
+          <div className="relative h-[120px] w-[96px] overflow-hidden rounded-[1.75rem] border border-brand-border/40 shadow-xl shadow-brand-amber/20 sm:h-[340px] sm:w-[255px] sm:rounded-[2.5rem]">
             <img src="./images/profile.jpg" alt="Rahul Biswas" className="h-full w-full object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/30 via-transparent to-transparent" aria-hidden="true" />
           </div>
         </motion.div>
 
         {/* Tagline */}
-        <motion.p variants={item} className="mb-3 font-mono text-[0.82rem] uppercase tracking-[0.3em] text-brand-amber">
+        <motion.p variants={item} className="mb-3 max-w-full font-mono text-[0.72rem] uppercase leading-relaxed tracking-[0.16em] text-brand-amber sm:text-[0.82rem] sm:tracking-[0.3em]">
           {hero.tagline}
         </motion.p>
 
@@ -69,22 +69,22 @@ export default function Hero() {
         </motion.h1>
 
         {/* Typewriter */}
-        <motion.p variants={item} className="mt-5 font-display text-2xl text-brand-muted md:text-3xl">
+        <motion.p variants={item} className="mt-2 font-display text-lg text-brand-muted sm:text-2xl md:text-3xl">
           <Typewriter prefix={hero.typewriterPrefix} roles={hero.roles} />
         </motion.p>
 
         {/* Subtitle */}
-        <motion.p variants={item} className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-muted md:text-xl">
+        <motion.p variants={item} className="mt-2 w-full max-w-xl text-sm leading-relaxed text-brand-muted sm:text-lg md:text-xl">
           {hero.sub}
         </motion.p>
 
         {/* CTAs */}
-        <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center gap-5">
+        <motion.div variants={item} className="mt-4 flex flex-wrap items-center justify-center gap-4 sm:mt-10 sm:gap-5">
           <motion.a
             href="#projects"
             whileHover={{ scale: 1.06, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-brand-amber via-brand-rose to-brand-amber px-9 py-4 text-lg font-semibold text-stone-100 shadow-lg shadow-brand-amber/30 transition-shadow hover:shadow-xl hover:shadow-brand-amber/40"
+            className="group relative overflow-hidden rounded-full bg-gradient-to-r from-brand-amber via-brand-rose to-brand-amber px-7 py-3 text-base font-semibold text-stone-100 shadow-lg shadow-brand-amber/30 transition-shadow hover:shadow-xl hover:shadow-brand-amber/40 sm:px-9 sm:py-4 sm:text-lg"
           >
             View Projects
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" aria-hidden="true" />
@@ -93,16 +93,16 @@ export default function Hero() {
             href="#contact"
             whileHover={{ scale: 1.06, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="rounded-full border border-brand-border px-9 py-4 text-lg font-semibold text-brand-text transition-colors hover:border-brand-amber/40 hover:bg-brand-surface"
+            className="rounded-full border border-brand-border px-7 py-3 text-base font-semibold text-brand-text transition-colors hover:border-brand-amber/40 hover:bg-brand-surface sm:px-9 sm:py-4 sm:text-lg"
           >
             Get in Touch
           </motion.a>
         </motion.div>
 
         {/* Meta chips */}
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <motion.div variants={item} className="mt-4 flex flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-3">
           {hero.metaChips.map((chip) => (
-            <span key={chip} className="glass-card rounded-full px-5 py-2 font-mono text-sm text-brand-muted">
+            <span key={chip} className="glass-card rounded-full px-4 py-1.5 font-mono text-xs text-brand-muted sm:px-5 sm:py-2 sm:text-sm">
               {chip}
             </span>
           ))}

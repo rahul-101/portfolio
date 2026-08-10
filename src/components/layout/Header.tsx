@@ -58,10 +58,12 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <button
+            type="button"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
-            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 lg:hidden"
+            aria-controls="mobile-menu"
+            className="pointer-events-auto flex h-11 w-11 cursor-pointer flex-col items-center justify-center gap-1.5 border-none bg-transparent p-2 lg:hidden"
           >
             <span className={clsx('h-0.5 w-5 rounded bg-brand-text transition-transform', menuOpen && 'translate-y-2 rotate-45')} />
             <span className={clsx('h-0.5 w-5 rounded bg-brand-text transition-opacity', menuOpen && 'opacity-0')} />
@@ -73,10 +75,12 @@ export default function Header() {
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-brand-border lg:hidden"
+            id="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="border-t border-brand-border bg-brand-bg/95 backdrop-blur-md lg:hidden"
             aria-label="Mobile"
           >
             <div className="flex flex-col gap-1 px-6 py-4">

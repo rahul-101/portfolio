@@ -22,7 +22,7 @@ export default function Typewriter({ prefix, roles }: Props) {
   return (
     <span className="inline-flex items-baseline flex-wrap justify-center">
       <span className="font-display font-semibold text-brand-text mr-2">{prefix}</span>
-      <span className="relative inline-block min-w-[200px] sm:min-w-[260px] overflow-hidden align-bottom text-left">
+      <span className="relative inline-block min-w-[140px] overflow-hidden align-bottom text-left sm:min-w-[260px]">
         <AnimatePresence mode="wait">
           <motion.span
             key={idx}

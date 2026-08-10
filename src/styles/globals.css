@@ -43,6 +43,13 @@
     box-sizing: border-box;
   }
 
+  /* Stop the fixed sticky header from covering section tops when navigating */
+  section[id],
+  [id] {
+    scroll-margin-top: 5.5rem;
+    scroll-padding-top: 5.5rem;
+  }
+
   /* Prevent any element from causing horizontal scroll */
   #root {
     overflow-x: hidden;
@@ -196,7 +203,7 @@
     text-wrap: balance;
   }
   .hero-name {
-    font-size: clamp(3.4rem, 12vw, 8rem);
+    font-size: clamp(2.3rem, 9vw, 8rem);
     letter-spacing: -0.04em;
     line-height: 1;
   }

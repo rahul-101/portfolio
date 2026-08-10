@@ -154,6 +154,9 @@ export const skillCategories: SkillCategory[] = [
       { name: 'SQL', icon: 'images/mssql.svg', level: 90 },
       { name: 'PowerShell', icon: 'images/powershell.svg', level: 85 },
       { name: 'TypeScript', icon: 'images/typescript.svg', level: 75 },
+      { name: 'JavaScript', icon: 'images/javascript.svg', level: 82 },
+      { name: 'React', icon: 'images/react.svg', level: 80 },
+      { name: 'CSS', icon: 'images/css.svg', level: 80 },
     ],
   },
   {
